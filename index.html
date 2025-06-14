@@ -1,108 +1,80 @@
-
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="h-full bg-gray-50">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>داروخانه آنلاین OTC - مشاور دارویی هوشمند</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ایزی دارو | EZDAROO</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>💊 داروخانه آنلاین OTC</h1>
-            <p>مشاور دارویی هوشمند - دسترسی 24/7 به اطلاعات دارویی</p>
-        </div>
-
-        <!-- بخش ورود -->
-        <div id="loginSection" class="login-section">
-            <h2>ورود به سیستم</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">نام کاربری:</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">رمز عبور:</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="btn">ورود</button>
-                <button type="button" class="btn btn-secondary" onclick="showRegister()">ثبت نام</button>
-            </form>
-        </div>
-
-        <!-- بخش اصلی برنامه -->
-        <div id="mainApp" class="main-app hidden">
-            <div class="user-info">
-                <h3>👤 خوش آمدید <span id="userFullName"></span></h3>
-                <p>📅 پلن شما: <strong id="userPlan"></strong></p>
-                <p>⏰ انقضای اشتراک: <span id="subscriptionExpiry"></span></p>
-                <p>💊 مشاوره‌های امروز: <span id="todayConsultations">0</span> / <span id="dailyLimit">3</span></p>
-            </div>
-
-            <div class="menu-grid" id="mainMenu">
-                <div class="menu-item" onclick="showConsultation()">
-                    <i>🩺</i>
-                    <span>مشاوره براساس علائم</span>
-                </div>
-                <div class="menu-item" onclick="showDrugInfo()">
-                    <i>💊</i>
-                    <span>اطلاعات داروها</span>
-                </div>
-                <div class="menu-item" onclick="showInteractions()">
-                    <i>⚠️</i>
-                    <span>تداخلات دارویی</span>
-                </div>
-                <div class="menu-item" onclick="showPriceComparison()">
-                    <i>💰</i>
-                    <span>مقایسه قیمت</span>
-                </div>
-                <div class="menu-item" onclick="showPharmacies()">
-                    <i>🏥</i>
-                    <span>داروخانه‌های نزدیک</span>
-                </div>
-                <div class="menu-item" onclick="showReminders()">
-                    <i>⏰</i>
-                    <span>یادآور دارو</span>
-                </div>
-                <div class="menu-item" onclick="showHistory()">
-                    <i>📋</i>
-                    <span>سوابق مشاوره</span>
-                </div>
-                <div class="menu-item" onclick="showSubscriptions()">
-                    <i>💎</i>
-                    <span>پلن‌های اشتراک</span>
-                </div>
-                <div class="menu-item" onclick="showProfile()">
-                    <i>👤</i>
-                    <span>پروفایل</span>
-                </div>
-                <div class="menu-item" onclick="showEmergency()">
-                    <i>🚨</i>
-                    <span>اضطراری</span>
-                </div>
-                <div class="menu-item" onclick="showAdmin()" id="adminMenuItem" style="display:none;">
-                    <i>🔧</i>
-                    <span>پنل مدیریت</span>
-                </div>
-                <div class="menu-item" onclick="logout()">
-                    <i>🚪</i>
-                    <span>خروج</span>
-                </div>
-            </div>
-
-            <div id="contentArea"></div>
-        </div>
+<body class="h-full font-sans text-gray-800">
+  <header class="bg-white shadow-sm py-4 px-6">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <h1 class="text-xl font-bold">ایزی دارو | EZDAROO</h1>
+      <p class="text-sm text-gray-500">دسترسی فوری، اطلاعات مطمئن دارویی، ۲۴/۷</p>
     </div>
+  </header>
 
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modalContent"></div>
-        </div>
-    </div>
+  <main class="max-w-5xl mx-auto p-6">
+    <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <button id="dose-btn" class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">💊</span>
+        <span class="mt-2">محاسبه دوز دارو بر اساس وزن</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">🩺</span>
+        <span class="mt-2">مشاوره بر اساس علائم</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">💊</span>
+        <span class="mt-2">اطلاعات داروها</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">⚠️</span>
+        <span class="mt-2">تداخلات دارویی</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">💰</span>
+        <span class="mt-2">مقایسه قیمت</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">🏥</span>
+        <span class="mt-2">داروخانه‌های نزدیک</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">📋</span>
+        <span class="mt-2">سوابق مشاوره</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">⏰</span>
+        <span class="mt-2">یادآور دارو</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">👤</span>
+        <span class="mt-2">پروفایل</span>
+      </button>
+      <button class="flex flex-col items-center p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <span class="text-3xl">🚪</span>
+        <span class="mt-2">خروج</span>
+      </button>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="dose-form" class="mt-8 hidden">
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-lg font-semibold mb-4">💊 محاسبه دوز استامینوفن</h2>
+        <form class="flex flex-col gap-4">
+          <label class="flex flex-col">
+            <span>وزن بیمار (کیلوگرم):</span>
+            <input id="weight" type="number" class="border rounded-md p-2" placeholder="مثلاً 70">
+          </label>
+          <button id="calc-dose" type="button" class="self-start px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">
+            محاسبه
+          </button>
+          <p id="dose-result" class="text-sm text-gray-700"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
